@@ -1,83 +1,36 @@
 package com.abc.CRUDS.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import jakarta.persistence.*;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Calendar;
+import java.util.Date;
 
 
-@Entity
-@Table(name="Users")
+@Document(collection = "Users")
+@NoArgsConstructor
+@AllArgsConstructor/*anotación de Lombok que se utiliza para generar automáticamente un constructor que acepta todos los campos de la clase como argumentos. Este constructor inicializa todos los campos de la clase con los valores pasados como argumentos.*/
+@Data
 public class User
+
     {
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
         private Long id;
+
         private String nombre;
+
         private String apellido;
+
         private String email;
+
         private Integer edad;
+
         @JsonFormat(pattern="yyyy-MM-dd")
-        private Calendar cumpleaños;
+        public Date cumpleanos;
 
-        public User(Long id , String nombre, String apellido, String email, Integer edad, Calendar cumpleaños)
-        {
-            this.id = id;
-            this.nombre = nombre;
-            this.apellido = apellido;
-            this.email = email;
-            this.edad = edad;
-            this.cumpleaños = cumpleaños;
-        }
 
-        public Long getId() {
-            return id;
-        }
 
-        public void setId(Long id) {
-            this.id = id;
-        }
-
-        public String getNombre() {
-            return nombre;
-        }
-
-        public void setNombre(String nombre) {
-            this.nombre = nombre;
-        }
-
-        public String getApellido() {
-            return apellido;
-        }
-
-        public void setApellido(String apellido) {
-            this.apellido = apellido;
-        }
-
-        public String getEmail() {
-            return email;
-        }
-
-        public void setEmail(String email) {
-            this.email = email;
-        }
-
-        public Integer getEdad() {
-            return edad;
-        }
-
-        public void setEdad(Integer edad) {
-            this.edad = edad;
-        }
-
-        public Calendar getCumpleaños() {
-            return cumpleaños;
-        }
-
-        public void setCumpleaños(Calendar cumpleaños) {
-            this.cumpleaños = cumpleaños;
-        }
     }
